@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<!------------------------------------------------------------------->
+<!------------------------------------------------------------------->
+
+<head>
+  <meta charset="UTF-8">
+  <title>Gestion des stocks</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Bibliothèque pour scanner les QR codes -->
+  <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+
+<!------------------------------------------------------------------->
+<!------------------------------------------------------------------->
+
+<body>
+
+<!----------------------------------------------------------------------->
+<!-------------------------------Titre app------------------------------->
+<!----------------------------------------------------------------------->
+
+<div id="header">
+  <img src="images/logo.png" alt="Logo" id="logo">
+  <h1>Gestion des stocks</h1>
+</div>
+
+<div id="secondeLigne"></div>
+
+
+<!---------------------------------------------------------------------->
+<!------------------------------Titre page------------------------------>
+<!---------------------------------------------------------------------->
+
+<span id="titre_page">Formulaire</span>
+
+
+<!----------------------------------------------------------------------->
+<!----------------------------------cms---------------------------------->
+<!----------------------------------------------------------------------->
+<div id="ligne_cms">
+  <span id="intitule_cms">Numéro d'article :</span>
+  <div id="cms_controls">
+    <button type="button" id="btnScanQR" class="btn-scan">📷 Scanner QR Code</button>
+    <input type="text" id="cms" placeholder="Numéro d'article" readonly required>
+  </div>
+  <!-- Zone pour afficher le scanner QR (sera visible quand on clique sur le bouton) -->
+  <div id="qrReader" style="display:none; width:100%; margin-top: 10px;"></div>
+</div>
+
+<!----------------------------------------------------------------------->
+<!----------------------------------qte---------------------------------->
+<!----------------------------------------------------------------------->
+<div id="ligne_qte">
+  <span id="intitule_qte">Quantité :</span>
+  <div id="qte_controls">
+    <button type="button" id="btnMoinsQte" class="btn-counter">−</button>
+    <input type="number" id="qte" value="1" min="1" required>
+    <button type="button" id="btnPlusQte" class="btn-counter">+</button>
+  </div>
+</div>
+
+<!----------------------------------------------------------------------->
+<!------------------------------emplacement------------------------------>
+<!----------------------------------------------------------------------->
+<div id="ligne_emplacement">
+  <span id="intitule_emplacement">Emplacement :</span>
+  <input type="text" id="emplacement" placeholder="Ex: A12" required>
+</div>
+
+<!---------------------------------------------------------------------->
+<!----------------------------------ot---------------------------------->
+<!---------------------------------------------------------------------->
+<div id="ligne_ot">
+  <span id="intitule_ot">OT :</span>
+  <input type="text" id="ot" placeholder="Ex: OT-2026-001" required>
+</div>
+
+<!----------------------------------------------------------------------->
+<!-----------------------------typeMouvement----------------------------->
+<!----------------------------------------------------------------------->
+<div id="ligne_typeMouvement">
+  <span id="intitule_typeMouvement">Mouvement :</span>
+  <select id="typeMouvement" required>
+    <option value="">-- Sélectionnez --</option>
+    <option value="Entrée">Entrée</option>
+    <option value="Sortie">Sortie</option>
+  </select>
+</div>
+
+<!----------------------------------------------------------------------->
+<!----------------------------datePrelevement---------------------------->
+<!----------------------------------------------------------------------->
+<div id="ligne_datePrelevement">
+  <span id="intitule_datePrelevement">Date :</span>
+  <input type="text" id="datePrelevement" placeholder="JJ/MM/AAAA" required>
+</div>
+
+<!----------------------------------------------------------------------->
+<!-----------------------------nomTechnicien----------------------------->
+<!----------------------------------------------------------------------->
+<div id="ligne_nomTechnicien">
+  <span id="intitule_nomTechnicien">Nom :</span>
+  <input type="text" id="nomTechnicien" placeholder="Nom du technicien" required>
+</div>
+
+<!------------------------------------------------------------------------>
+<!-------------------------commentairesTechnicien------------------------->
+<!------------------------------------------------------------------------>
+<div id="ligne_commentairesTechnicien">
+  <span id="intitule_commentairesTechnicien">Commentaire :</span>
+  <textarea id="commentairesTechnicien" rows="3" placeholder="Commentaire optionnel..."></textarea>
+</div>
+
+<!------------------------------------------------------------------------>
+<!--------------------------------Boutons-------------------------------->
+<!------------------------------------------------------------------------>
+<div id="ligne_boutons">
+  <button type="button" id="btnRetour" class="btn-secondary">← Retour</button>
+  <button type="submit" id="btnEnregistrer" class="btn-primary">✅ Enregistrer</button>
+</div>
+
+
+
+
+
+<script src="script.js"></script>
+</body>
+
+</html>

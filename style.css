@@ -1,0 +1,304 @@
+/*----------------------------------------Style du body----------------------------------------*/
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #707173; 
+}
+
+/*----------------------------------------Ligne titre app----------------------------------------*/
+
+#header {
+  display: flex;
+  align-items: center;      /* aligne verticalement logo + titre */
+  justify-content: center;
+  width: 100%;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  border-bottom: 4px solid #A1A1A1 ;
+  padding-bottom: 40px;
+}
+
+
+#secondeLigne {
+  width: 100%;
+  height: 1px;
+  background-color: #A1A1A1;
+  margin-top: 6px;                /* espace entre les deux lignes */
+  margin-bottom: 20px;
+}
+
+#logo {
+  height: 50px;             /* ajuste la taille du logo */
+  margin-right: 40px;       /* espace entre logo et titre */
+}
+
+/*----------------------------------------Ligne titre page----------------------------------------*/
+
+#titre_page {
+  align-self: flex-start;
+  font-size: 32px;
+  text-decoration: underline;
+  margin-left: 30px;
+  margin-bottom: 100px;
+}
+
+/*----------------------------------------Ligne entrer ID mag----------------------------------------*/
+
+#input_id_mag{
+  display: flex;
+  flex-direction: column;
+  gap:15px;
+}
+
+#intitule_id{
+  font-size: 24px;
+}
+
+#id_mag{
+  border-radius: 20px;
+  font-size: 24px;
+}
+
+#valider{
+  align-self: flex-end;
+  border-radius: 20px;
+  padding: 5px 20px;
+  background-color: #009EFF;
+  border-color: #009EFF;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: white;
+  font-size: 18px ;
+  
+}
+
+
+/* Style du bouton au survol */
+#valider:hover {
+  background-color: #0080cc;
+  cursor: pointer;
+}
+
+#valider:active {
+  transform: scale(0.98); /* Petit effet de "pression" */
+}
+
+
+#erreur_id_inconnu,
+#erreur_id_vide {
+  align-self: center;
+  display: none; /* Caché par défaut, le JS le montrera si besoin */
+  color: white;
+  background-color: #C8102E;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  animation: shake 0.3s; /* Petit effet de secousse */
+}
+
+/* Animation de secousse pour attirer l'attention */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+
+
+/*==============================================================================*/
+/*====================================Page 2====================================*/
+/*==============================================================================*/
+
+
+
+
+/*----------------------------------------Lignes de formulaire----------------------------------------*/
+
+#ligne_cms,
+#ligne_qte,
+#ligne_emplacement,
+#ligne_ot,
+#ligne_typeMouvement,
+#ligne_datePrelevement,
+#ligne_nomTechnicien,
+#ligne_commentairesTechnicien {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 500px;
+}
+
+/*----------------------------------------Intitulés des champs----------------------------------------*/
+
+#intitule_cms,
+#intitule_qte,
+#intitule_emplacement,
+#intitule_ot,
+#intitule_typeMouvement,
+#intitule_datePrelevement,
+#intitule_nomTechnicien,
+#intitule_commentairesTechnicien {
+  font-size: 20px;
+  font-weight: bold;
+  color: #707173;
+}
+
+/*----------------------------------------Inputs généraux----------------------------------------*/
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  border: 2px solid #A1A1A1;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 18px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #707173;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #009EFF;
+}
+
+input[readonly] {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+/*----------------------------------------Bouton Scanner QR Code----------------------------------------*/
+
+.btn-scan {
+  background-color: #009EFF;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-size: 18px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.btn-scan:hover {
+  background-color: #0080cc;
+}
+
+.btn-scan:active {
+  transform: scale(0.98);
+}
+
+/*----------------------------------------Compteur de quantité----------------------------------------*/
+
+#qte_controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#qte {
+  width: 80px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.btn-counter {
+  background-color: #009EFF;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-counter:hover {
+  background-color: #0080cc;
+}
+
+.btn-counter:active {
+  transform: scale(0.95);
+}
+
+/*----------------------------------------Zone QR Reader----------------------------------------*/
+
+#qrReader {
+  border: 2px solid #009EFF;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #000;
+}
+
+/*----------------------------------------Boutons d'action----------------------------------------*/
+
+#ligne_boutons {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.btn-primary {
+  flex: 1;
+  background-color: #009EFF;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  font-size: 20px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #0080cc;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  flex: 1;
+  background-color: #A1A1A1;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  font-size: 20px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #808080;
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/*----------------------------------------Textarea----------------------------------------*/
+
+textarea {
+  resize: vertical; /* Permet de redimensionner verticalement seulement */
+  min-height: 60px;
+}
