@@ -72,10 +72,63 @@ btnValider.onclick = function() {
 //--------------------------------------cms--------------------------------------//
 
 const btnScanQR = document.getElementById("btnScanQR");
+const qrReaderDiv = document.getElementById("qrReader");
+const inputCms = document.getElementById("cms");
+
+let html5QrCode; // Variable pour stocker l'instance du scanner
+let isScanning = false; // Pour savoir si on est en train de scanner
 
 btnScanQR.onclick = function() {
-    
-}
+    if (!isScanning) {
+        // ===== DÉMARRER LE SCAN =====
+        qrReaderDiv.style.display = 'block'; // Afficher la zone de scan
+        btnScanQR.textContent = '🛑 Arrêter le scan'; // Changer le texte du bouton
+        isScanning = true;
+        
+        html5QrCode = new Html5Qrcode("qrReader"); // Créer le scanner
+        
+        html5QrCode.start(
+            { facingMode: "environment" }, // Utiliser la caméra arrière du téléphone
+            {
+                fps: 10, // 10 images par seconde
+                qrbox: { width: 250, height: 250 } // Taille de la zone de scan
+            },
+            (decodedText) => {
+                // ===== QR CODE DÉTECTÉ =====
+                inputCms.value = decodedText; // Mettre le numéro dans le champ
+                
+                // Arrêter automatiquement le scan
+                html5QrCode.stop().then(() => {
+                    qrReaderDiv.style.display = 'none'; // Cacher la zone de scan
+                    btnScanQR.textContent = '📷 Scanner QR Code'; // Remettre le texte du bouton
+                    isScanning = false;
+                }).catch((err) => {
+                    console.error("Erreur arrêt scanner:", err);
+                });
+            },
+            (errorMessage) => {
+                // Erreur pendant le scan (normal, ça scanne en continu)
+                // On ne fait rien ici
+            }
+        ).catch((err) => {
+            // ===== ERREUR DE DÉMARRAGE (caméra refusée, etc.) =====
+            alert("Erreur caméra : " + err);
+            qrReaderDiv.style.display = 'none';
+            btnScanQR.textContent = '📷 Scanner QR Code';
+            isScanning = false;
+        });
+        
+    } else {
+        // ===== ARRÊTER LE SCAN MANUELLEMENT =====
+        html5QrCode.stop().then(() => {
+            qrReaderDiv.style.display = 'none';
+            btnScanQR.textContent = '📷 Scanner QR Code';
+            isScanning = false;
+        }).catch((err) => {
+            console.error("Erreur arrêt scanner:", err);
+        });
+    }
+};
 
 //--------------------------------------qte--------------------------------------//
 
@@ -101,4 +154,3 @@ btnScanQR.onclick = function() {
 
 
 
-//===================================Interactions==================================//
