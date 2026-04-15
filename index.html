@@ -8,6 +8,13 @@
   <meta charset="UTF-8">
   <title>Gestion des stocks</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#009EFF">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Gestion Stock">
+  <link rel="apple-touch-icon" href="logo.png">
 </head>
 
 <!------------------------------------------------------------------->
@@ -46,7 +53,14 @@
 
 </div>
 
-
+<!-- Enregistrement du Service Worker -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('./service-worker.js');
+    });
+  }
+</script>
 
 <script src="script.js"></script>
 </body>
