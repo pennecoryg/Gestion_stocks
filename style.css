@@ -197,6 +197,11 @@ input[readonly] {
   transform: scale(0.98);
 }
 
+#cms {
+  background-color: #C3C3C3;
+
+}
+
 /*----------------------------------------Compteur de quantité----------------------------------------*/
 
 #qte_controls {
@@ -235,6 +240,14 @@ input[readonly] {
   transform: scale(0.95);
 }
 
+/* Cacher les flèches du input number */
+#qte::-webkit-inner-spin-button,
+#qte::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
 /*----------------------------------------Zone QR Reader----------------------------------------*/
 
 #qrReader {
@@ -242,6 +255,43 @@ input[readonly] {
   border-radius: 10px;
   padding: 10px;
   background-color: #000;
+}
+
+/*----------------------------------------Champ Date----------------------------------------*/
+
+#datePrelevement {
+  border: 2px solid #A1A1A1;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 18px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #707173;
+  width: 100%;
+  box-sizing: border-box; /* ← IMPORTANT : inclut le padding et border dans le width */
+  cursor: pointer;
+}
+
+#datePrelevement:focus {
+  outline: none;
+  border-color: #009EFF;
+}
+
+/* Icône calendrier */
+#datePrelevement::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  font-size: 20px;
+  color: #707173;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#datePrelevement::-webkit-calendar-picker-indicator:hover {
+  background-color: #f0f0f0;
+}
+
+/* Pour Firefox */
+#datePrelevement::-moz-calendar-picker-indicator {
+  cursor: pointer;
 }
 
 /*----------------------------------------Boutons d'action----------------------------------------*/
