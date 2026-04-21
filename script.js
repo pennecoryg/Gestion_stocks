@@ -1,8 +1,6 @@
 //===============================================================================//
 //=================================CONFIGURATION=================================//
 //===============================================================================//
-const CLE_API = "MotDePasseSecret123";
-const FORMS_ID = "GAcq9M6HUEm7UwTL1_9iyU-EhTH0AWRIqNthZ4jF8b9URVM1UDJEWUxWU0FNQ0g5UFJYOEk0SDI1Ui4u"; 
 
 const MAGASINS = {
     'MAG000': { nom: 'Magasin Test' },
@@ -336,7 +334,6 @@ if (btnEnregistrer) {
         
         // Préparer les données
         const data = {
-            cleAPI: CLE_API,
             idMagasin: magasinID,
             cms: cms,
             qte: qte.toString(),
@@ -352,11 +349,8 @@ if (btnEnregistrer) {
         
         // Envoyer au formulaire Forms
         try {
-            await soumettreFormsInvisible(data);
+            await envoiData(data);
             alert("✅ Stock enregistré avec succès !");
-            
-            // Réinitialiser le formulaire (optionnel)
-            window.location.reload(); // Recharge la page
             
         } catch (error) {
             alert("❌ Erreur lors de l'enregistrement : " + error.message);
@@ -365,50 +359,21 @@ if (btnEnregistrer) {
 }
 
 //==============================================================================//
-//==========================FONCTION SOUMETTRE FORMS============================//
+//=========================FONCTION ENVOI DES DONNEES===========================//
 //==============================================================================//
 
-async function soumettreFormsInvisible(data) {
-    return new Promise((resolve, reject) => {
-        // Construire l'URL du formulaire avec les données pré-remplies
-        const baseURL = `https://forms.office.com/Pages/ResponsePage.aspx?id=${FORMS_ID}`;
-        
-        // Microsoft Forms utilise r1, r2, r3... pour pré-remplir (ordre des questions)
-        const params = new URLSearchParams({
-            'r1': data.cleAPI,              // Question 1
-            'r2': data.idMagasin,           // Question 2
-            'r3': data.cms,                 // Question 3
-            'r4': data.qte,                 // Question 4
-            'r5': data.emplacement,         // Question 5
-            'r6': data.ot,                  // Question 6
-            'r7': data.typeMouvement,       // Question 7
-            'r8': data.datePrelevement,     // Question 8
-            'r9': data.nomTechnicien,       // Question 9
-            'r10': data.commentairesTechnicien // Question 10
-        });
-        
-        const finalURL = `${baseURL}&${params.toString()}`;
-        
-        // Créer un iframe invisible pour soumettre
-        const iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.src = finalURL;
-        
-        // Quand l'iframe charge (Forms reçu)
-        iframe.onload = function() {
-            setTimeout(() => {
-                document.body.removeChild(iframe);
-                resolve();
-            }, 2000); // Attendre 2 secondes pour que Forms soit vraiment soumis
-        };
-        
-        iframe.onerror = function() {
-            document.body.removeChild(iframe);
-            reject(new Error('Erreur lors de la soumission'));
-        };
-        
-        document.body.appendChild(iframe);
+async function envoiData(data) {
+    const WEBHOOK_URL = "URL flux power automate";
+
+    const response = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
     });
+
+    if (!response.ok) {
+        throw new Error("Erreur lors de l'envoi : " + response.status);
+    }
 }
 
 } // ← Fermeture du if (document.getElementById('cms'))
